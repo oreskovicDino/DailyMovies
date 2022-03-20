@@ -22,7 +22,6 @@
         public virtual async Task<bool> Add(T entity)
         {
             await dbSet.AddAsync(entity);
-
             return true;
         }
 

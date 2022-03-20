@@ -1,4 +1,4 @@
-﻿\namespace DailyMoviesDAL.Repositories.Abstractions
+﻿namespace DailyMoviesDAL.Repositories.Abstractions
 {
     using DailyMoviesDAL.Models;
 

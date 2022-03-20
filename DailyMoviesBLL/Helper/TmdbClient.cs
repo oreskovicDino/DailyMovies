@@ -23,7 +23,7 @@
         }
 
         /// <summary>
-        /// Method builds HTTP GET requset to the TMDB site.
+        /// Method builds HTTP GET request to the TMDB site.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="path"></param>
@@ -74,7 +74,7 @@
         }
 
         /// <summary>
-        /// Method retrives TMDB API key and concatenates to the <paramref name="path"/> value.
+        /// Method retrieves TMDB API key and concatenates to the <paramref name="path"/> value.
         /// </summary>
         /// <param name="path">Resolved TMDB URL address</param>
         /// <returns></returns>
