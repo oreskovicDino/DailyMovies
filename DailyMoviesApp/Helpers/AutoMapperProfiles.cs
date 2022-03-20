@@ -27,14 +27,19 @@
                  .ForMember(x => x.Id, opt => opt.Ignore()).ReverseMap();
             
             
-            CreateMap<MovieCrewModel, Crew>().ReverseMap();
-            CreateMap<MovieCastModel, Cast>().ReverseMap();
+            CreateMap<MovieCrewModel, Crew>()
+                .ForMember(a => a.CrewId, b => b.MapFrom(src => src.Id)).ReverseMap();
+            CreateMap<MovieCastModel, Cast>()
+                .ForMember(a => a.CastId, b => b.MapFrom(src => src.Id)).ReverseMap();
 
 
             CreateMap<PersonModel, MovieCrewModel>().ReverseMap();
 
             CreateMap<CastDto, Cast>().ReverseMap();
             CreateMap<CrewDto, Crew>().ReverseMap();
+
+            CreateMap<GenreModel, Genre>().ReverseMap();
+            CreateMap<MovieDetailModel, MovieDetail>().ReverseMap();
         }
     }
 }

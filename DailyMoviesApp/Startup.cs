@@ -1,6 +1,5 @@
 namespace DailyMoviesApp
 {
-    using AutoMapper;
     using DailyMoviesApp.Helpers;
     using DailyMoviesBLL.Helper;
     using DailyMoviesBLL.Helper.Abstractions;
@@ -31,9 +30,13 @@ namespace DailyMoviesApp
             services.Configure<AppOptions>(options => Configuration.Bind(options));
 
             // Db Connection
-            //services.SetUpAppDependencies(Configuration.GetConnectionString("DefaultConnection"));
-            services.AddDbContext<ApplicationDbContex>(options => options.UseSqlServer(
-            Configuration["ConnectionStrings:DefaultConnection"]));
+            services.SetUpAppDependencies(Configuration.GetConnectionString("SomeConnection2"));
+            //services.AddDbContext<ApplicationDbContex>(
+            //    options =>
+            //    {
+            //        options.UseSqlServer(Configuration["ConnectionStrings:SomeConnection2"]);
+            //        //options.EnableSensitiveDataLogging();
+            //    });
 
             #region AutoMapper Init
             var configMapper = new AutoMapper.MapperConfiguration(cfg => { cfg.AddProfile(new AutoMapperProfiles()); });

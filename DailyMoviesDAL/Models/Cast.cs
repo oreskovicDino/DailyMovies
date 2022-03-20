@@ -1,10 +1,13 @@
 ﻿namespace DailyMoviesDAL.Models
 {
     using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
     public class Cast
     {
-        public int Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
+        public int CastId { get; set; }
 
         [MaxLength(80)]
         public string Name { get; set; }

@@ -5,7 +5,6 @@
     using DailyMoviesBLL.Models;
     using DailyMoviesBLL.Services.Abstractions;
     using DailyMoviesDAL.Models;
-    using DailyMoviesDAL.Models.Dtos;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -17,8 +16,8 @@
         private readonly ITrendingMoviesService trendingMoviesService;
         private readonly IMapper mapper;
 
-        public List<MovieCrewModel> CrewModels { get; set; }
-        public List<MovieCastModel> CastModels { get; set; }
+        private List<MovieCrewModel> CrewModels = new List<MovieCrewModel>();
+        private List<MovieCastModel> CastModels = new List<MovieCastModel>();
 
         public TmdbService(
             ITmdbSync tmdbSync,
@@ -47,15 +46,17 @@
                         //TrendingMovie
                         MovieDetail detaildMovie = await SyncMovieDetails(trendingMovie.Id);
                         TrendingMovie trendingMovieDb = mapper.Map<TrendingMovie>(trendingMovie);
+                        detaildMovie.MovieId = trendingMovieDb.MovieId;
                         trendingMovieDb.MovieDetail = detaildMovie;
+                        
                         await trendingMoviesService.InsertTrendingMovie(trendingMovieDb);
                     }
 
-                  return await trendingMoviesService.GetTrendingMoviesAsync(filter);
+                    return await trendingMoviesService.GetTrendingMoviesAsync(filter);
                 }
                 else
                 {
-                  return  await trendingMoviesService.GetTrendingMoviesAsync(filter);
+                    return await trendingMoviesService.GetTrendingMoviesAsync(filter);
                 }
             }
             catch (Exception)
@@ -74,8 +75,8 @@
                 MovieDetail movieDetail = mapper.Map<MovieDetail>(movieDetails);
                 await SyncProdcutionCrew(movieId);
 
-                movieDetail.Crew = (ICollection<Crew>)mapper.Map<Crew>(CrewModels);
-                movieDetail.Cast = (ICollection<Cast>)mapper.Map<Cast>(CastModels);
+                movieDetail.Crew = mapper.Map<List<Crew>>(CrewModels);
+                movieDetail.Cast = mapper.Map<List<Cast>>(CastModels);
 
                 return movieDetail;
             }

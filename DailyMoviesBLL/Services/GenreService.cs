@@ -25,7 +25,7 @@
                 {
                     Genre genreDb = new Genre
                     {
-                        Id = genre.Id,
+                        GenreId= genre.Id,
                         Name = genre.Name
                     };
                     await unit.genre.Upsert(genreDb);
