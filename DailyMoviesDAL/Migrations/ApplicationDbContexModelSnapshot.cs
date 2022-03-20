@@ -21,39 +21,35 @@ namespace DailyMoviesDAL.Migrations
 
             modelBuilder.Entity("DailyMoviesDAL.Models.Cast", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("CastId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Character")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Known_For_Department")
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int?>("MovieDetailId")
+                    b.Property<int?>("MovieDetailMovieId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
-                    b.Property<string>("character")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                    b.HasKey("CastId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("MovieDetailId");
+                    b.HasIndex("MovieDetailMovieId");
 
                     b.ToTable("Cast");
                 });
 
             modelBuilder.Entity("DailyMoviesDAL.Models.Crew", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("CrewId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Job")
                         .HasMaxLength(30)
@@ -63,54 +59,47 @@ namespace DailyMoviesDAL.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int?>("MovieDetailId")
+                    b.Property<int?>("MovieDetailMovieId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CrewId");
 
-                    b.HasIndex("MovieDetailId");
+                    b.HasIndex("MovieDetailMovieId");
 
                     b.ToTable("Crew");
                 });
 
             modelBuilder.Entity("DailyMoviesDAL.Models.Genre", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
 
-                    b.Property<int?>("MovieDetailId")
+                    b.Property<int?>("MovieDetailMovieId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
-                    b.HasKey("Id");
+                    b.HasKey("GenreId");
 
-                    b.HasIndex("MovieDetailId");
+                    b.HasIndex("MovieDetailMovieId");
 
                     b.ToTable("Genre");
                 });
 
             modelBuilder.Entity("DailyMoviesDAL.Models.MovieDetail", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Backdrop_Path")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Overview")
                         .HasMaxLength(500)
@@ -130,7 +119,7 @@ namespace DailyMoviesDAL.Migrations
                     b.Property<int>("TrendingMovieId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("MovieId");
 
                     b.HasIndex("TrendingMovieId")
                         .IsUnique();
@@ -140,11 +129,6 @@ namespace DailyMoviesDAL.Migrations
 
             modelBuilder.Entity("DailyMoviesDAL.Models.TrendingMovie", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
 
@@ -154,7 +138,7 @@ namespace DailyMoviesDAL.Migrations
                     b.Property<float>("Vote_Average")
                         .HasColumnType("real");
 
-                    b.HasKey("Id");
+                    b.HasKey("MovieId");
 
                     b.ToTable("TrendingMovie");
                 });
@@ -163,7 +147,7 @@ namespace DailyMoviesDAL.Migrations
                 {
                     b.HasOne("DailyMoviesDAL.Models.MovieDetail", "MovieDetail")
                         .WithMany("Cast")
-                        .HasForeignKey("MovieDetailId");
+                        .HasForeignKey("MovieDetailMovieId");
 
                     b.Navigation("MovieDetail");
                 });
@@ -172,7 +156,7 @@ namespace DailyMoviesDAL.Migrations
                 {
                     b.HasOne("DailyMoviesDAL.Models.MovieDetail", "MovieDetail")
                         .WithMany("Crew")
-                        .HasForeignKey("MovieDetailId");
+                        .HasForeignKey("MovieDetailMovieId");
 
                     b.Navigation("MovieDetail");
                 });
@@ -181,7 +165,7 @@ namespace DailyMoviesDAL.Migrations
                 {
                     b.HasOne("DailyMoviesDAL.Models.MovieDetail", "MovieDetail")
                         .WithMany("Genre")
-                        .HasForeignKey("MovieDetailId");
+                        .HasForeignKey("MovieDetailMovieId");
 
                     b.Navigation("MovieDetail");
                 });

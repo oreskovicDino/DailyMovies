@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DailyMoviesDAL.Migrations
 {
-    public partial class InitialSetup : Migration
+    public partial class DatabaseTableColumnFix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,23 +11,19 @@ namespace DailyMoviesDAL.Migrations
                 name: "TrendingMovie",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     MovieId = table.Column<int>(type: "int", nullable: false),
                     Vote_Average = table.Column<float>(type: "real", nullable: false),
                     Sync_Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TrendingMovie", x => x.Id);
+                    table.PrimaryKey("PK_TrendingMovie", x => x.MovieId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "MovieDetail",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     MovieId = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
                     Overview = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
@@ -38,12 +34,12 @@ namespace DailyMoviesDAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieDetail", x => x.Id);
+                    table.PrimaryKey("PK_MovieDetail", x => x.MovieId);
                     table.ForeignKey(
                         name: "FK_MovieDetail_TrendingMovie_TrendingMovieId",
                         column: x => x.TrendingMovieId,
                         principalTable: "TrendingMovie",
-                        principalColumn: "Id",
+                        principalColumn: "MovieId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -51,21 +47,20 @@ namespace DailyMoviesDAL.Migrations
                 name: "Cast",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CastId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
                     Known_For_Department = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
-                    character = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
-                    MovieDetailId = table.Column<int>(type: "int", nullable: true)
+                    Character = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    MovieDetailMovieId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cast", x => x.Id);
+                    table.PrimaryKey("PK_Cast", x => x.CastId);
                     table.ForeignKey(
-                        name: "FK_Cast_MovieDetail_MovieDetailId",
-                        column: x => x.MovieDetailId,
+                        name: "FK_Cast_MovieDetail_MovieDetailMovieId",
+                        column: x => x.MovieDetailMovieId,
                         principalTable: "MovieDetail",
-                        principalColumn: "Id",
+                        principalColumn: "MovieId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -73,21 +68,20 @@ namespace DailyMoviesDAL.Migrations
                 name: "Crew",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CrewId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
                     Known_For_Department = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     Job = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
-                    MovieDetailId = table.Column<int>(type: "int", nullable: true)
+                    MovieDetailMovieId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Crew", x => x.Id);
+                    table.PrimaryKey("PK_Crew", x => x.CrewId);
                     table.ForeignKey(
-                        name: "FK_Crew_MovieDetail_MovieDetailId",
-                        column: x => x.MovieDetailId,
+                        name: "FK_Crew_MovieDetail_MovieDetailMovieId",
+                        column: x => x.MovieDetailMovieId,
                         principalTable: "MovieDetail",
-                        principalColumn: "Id",
+                        principalColumn: "MovieId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -95,36 +89,35 @@ namespace DailyMoviesDAL.Migrations
                 name: "Genre",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GenreId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
-                    MovieDetailId = table.Column<int>(type: "int", nullable: true)
+                    MovieDetailMovieId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Genre", x => x.Id);
+                    table.PrimaryKey("PK_Genre", x => x.GenreId);
                     table.ForeignKey(
-                        name: "FK_Genre_MovieDetail_MovieDetailId",
-                        column: x => x.MovieDetailId,
+                        name: "FK_Genre_MovieDetail_MovieDetailMovieId",
+                        column: x => x.MovieDetailMovieId,
                         principalTable: "MovieDetail",
-                        principalColumn: "Id",
+                        principalColumn: "MovieId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cast_MovieDetailId",
+                name: "IX_Cast_MovieDetailMovieId",
                 table: "Cast",
-                column: "MovieDetailId");
+                column: "MovieDetailMovieId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Crew_MovieDetailId",
+                name: "IX_Crew_MovieDetailMovieId",
                 table: "Crew",
-                column: "MovieDetailId");
+                column: "MovieDetailMovieId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Genre_MovieDetailId",
+                name: "IX_Genre_MovieDetailMovieId",
                 table: "Genre",
-                column: "MovieDetailId");
+                column: "MovieDetailMovieId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MovieDetail_TrendingMovieId",

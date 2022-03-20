@@ -7,8 +7,9 @@
 
     public class MovieDetail
     {
-        public int Id { get; set; }
-
+        
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
         public int MovieId { get; set; }
 
         [MaxLength(80)]
