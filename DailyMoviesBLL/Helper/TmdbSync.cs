@@ -10,7 +10,7 @@
         /// <summary>
         /// TMDB request path section for requesting trending movies in a day.
         /// </summary>
-        private const string TrandingDailyUriPath = "trending/movie/day?";
+        private const string TrendingDailyUriPath = "trending/movie/day?";
 
         private readonly TmdbClient client;
 
@@ -28,7 +28,7 @@
         {
             try
             {
-                return await client.GetRequestAsync<TrendingMoviesResultModel>($"{TrandingDailyUriPath}page={currentPage}&");
+                return await client.GetRequestAsync<TrendingMoviesResultModel>($"{TrendingDailyUriPath}page={currentPage}&");
             }
             catch (Exception){throw;}
         }

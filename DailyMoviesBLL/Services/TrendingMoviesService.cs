@@ -49,7 +49,7 @@
             }
         }
 
-        // TODO: Copmlete CRUD for the trending movie repository.
+        // TODO: Complete CRUD for the trending movie repository.
 
         /// <summary>
         /// Removes old movies
@@ -79,7 +79,7 @@
         }
 
         /// <summary>
-        /// Resolves formmated list of trending movies
+        /// Resolves formatted list of trending movies
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
