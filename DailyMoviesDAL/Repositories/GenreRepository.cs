@@ -18,31 +18,8 @@
             ILogger logger) : base(contex, logger)
         {
         }
+    
 
-
-        //public override async Task<bool> Upsert(Genre genre)
-        //{
-        //    try
-        //    {
-        //        var existingGenre = await dbSet.Where(x => x.Id == genre.Id).FirstOrDefaultAsync();
-
-        //        if (existingGenre is null)
-        //        {
-        //            return await Add(genre);
-        //        }
-        //        else
-        //        {
-        //            existingGenre.Id = genre.Id;
-        //            existingGenre.Name = genre.Name;
-        //            return true;
-        //        }
-
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        logger.LogError(e, "{Repo} \"Upsert\" method error", typeof(MovieDetailRepository));
-        //        return false;
-        //    }
-        //}
+        // TODO: Implement CRUD for the Genre repository.
     }
 }

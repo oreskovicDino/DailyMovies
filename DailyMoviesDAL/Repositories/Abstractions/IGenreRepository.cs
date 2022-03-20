@@ -5,6 +5,5 @@
 
     public interface IGenreRepository : IGenericRepository<Genre>
     {
-        //Task<bool> Upsert(Genre genre);
     }
 }

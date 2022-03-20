@@ -18,34 +18,6 @@
             this.logger = logger;
         }
 
-
-        //public override async Task<bool> Upsert(MovieDetail movieDetail)
-        //{
-        //    try
-        //    {
-        //        var existingMovieDetail = await dbSet.Where(x => x.Id == movieDetail.Id).FirstOrDefaultAsync();
-
-        //        if (existingMovieDetail is null)
-        //        {
-        //            return await Add(movieDetail);
-        //        }
-        //        else
-        //        {
-        //            existingMovieDetail.Title = movieDetail.Title;
-        //            existingMovieDetail.Tagline = movieDetail.Tagline;
-        //            existingMovieDetail.Overview = movieDetail.Overview;
-        //            existingMovieDetail.Release_Date = movieDetail.Release_Date;
-        //            existingMovieDetail.Backdrop_Path = movieDetail.Backdrop_Path;
-
-        //            return true;
-        //        }
-
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        logger.LogError(e, "{Repo} \"Upsert\" method error", typeof(MovieDetailRepository));
-        //        return false;
-        //    }
-        //}
+        // TODO: Implement CRUD for the MovieDetail repository.
     }
 }

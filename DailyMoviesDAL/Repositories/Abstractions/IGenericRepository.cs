@@ -8,7 +8,7 @@
         Task<IEnumerable<T>> All();
         Task<T> GetById(int id);
         Task<bool> Add(T entity);
-        Task<bool> Delete(int Id);
+        bool Delete(T entity);
         Task<bool> Upsert(T entity);
     }
 }
