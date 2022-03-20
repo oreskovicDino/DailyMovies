@@ -5,9 +5,4 @@
         Acting,
         Directing
     }
-
-    public enum ProductionJobeType
-    {
-
-    }
 }

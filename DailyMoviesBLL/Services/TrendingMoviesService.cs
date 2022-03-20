@@ -49,7 +49,7 @@
             }
         }
 
-        // TODO: CRUD
+        // TODO: Copmlete CRUD for the trending movie repository.
 
         /// <summary>
         /// Removes old movies
@@ -77,8 +77,6 @@
             }
 
         }
-
-
 
         /// <summary>
         /// Resolves formmated list of trending movies

@@ -27,52 +27,6 @@
             this.movieCreditsService = movieCreditsService;
         }
 
-        //public async Task<MovieDetail> UpsertMovieDetail(int movieId)
-        //{
-        //    try
-        //    {
-        //        var movieDetail = await tmdbSync.MovieSync(movieId);
-
-        //        List<MovieDetailGenre> movieDetailGenres = new List<MovieDetailGenre>();
-
-        //        foreach (var genre in movieDetail.Genres)
-        //        {
-        //            MovieDetailGenre movieDetailGenre = new MovieDetailGenre
-        //            {
-        //                GenreId = genre.Id,
-        //                MovieDetailId = movieDetail.Id
-        //            };
-        //            movieDetailGenres.Add(movieDetailGenre);
-        //        }
-
-        //        ProductionDto production = await movieCreditsService.SyncCreditsByMovie(movieId);
-
-        //        MovieDetail movieDetailData = new MovieDetail
-        //        {
-        //            MovieId = movieDetail.Id,
-        //            Title = movieDetail.Title,
-        //            Tagline = movieDetail.Tagline,
-        //            Release_Date = DateTime.Parse(movieDetail.Release_Date),
-        //            Backdrop_Path = movieDetail.Backdrop_Path,
-        //            MovieDetailGenre = movieDetailGenres,
-        //            Casts = production.Casts,
-        //            Crews = production.Crews
-        //        };
-
-        //        //if ())
-        //        //{
-        //        //    return movieDetailData;
-        //        //}
-
-        //        await unitOfWork.movieDetail.Upsert(movieDetailData);
-        //        return movieDetailData;
-
-        //        //throw new ArgumentNullException();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
+        // TODO: Implement CRUD for the MovieDetails repository.
     }
 }

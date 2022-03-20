@@ -5,6 +5,5 @@
 
     public interface IMovieCreditsService
     {
-        //Task<ProductionDto> SyncCreditsByMovie(int movieId);
     }
 }

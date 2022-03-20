@@ -10,13 +10,11 @@
 
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly ApplicationDbContex contex;
         private readonly ILogger logger;
         protected DbSet<T> dbSet;
 
         public GenericRepository(ApplicationDbContex contex, ILogger logger)
         {
-            this.contex = contex;
             this.logger = logger;
             dbSet = contex.Set<T>();
         }
@@ -41,9 +39,17 @@
             }
         }
 
-        public virtual Task<bool> Delete(int Id)
+        public virtual bool Delete(T entity)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                dbSet.Remove(entity);
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public virtual async Task<T> GetById(int id)

@@ -6,6 +6,5 @@
 
     public interface IMovieDetailsService
     {
-        //Task<MovieDetail> UpsertMovieDetail(int movieId);
     }
 }

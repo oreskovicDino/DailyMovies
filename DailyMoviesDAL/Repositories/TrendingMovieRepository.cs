@@ -56,15 +56,13 @@
             }
         }
 
-        public override async Task<bool> Delete(int id)
+        public override bool Delete(TrendingMovie movie)
         {
             try
             {
-                var existingMovie = await dbSet.Where(x => x.MovieId == id).FirstOrDefaultAsync();
-
-                if (existingMovie is not null)
+                if (movie is not null)
                 {
-                    dbSet.Remove(existingMovie);
+                    dbSet.Remove(movie);
                     return true;
                 }
                 else

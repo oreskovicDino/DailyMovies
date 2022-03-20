@@ -51,11 +51,11 @@
                         await trendingMoviesService.InsertTrendingMovie(trendingMovieDb);
                     }
 
-                    await trendingMoviesService.GetTrendingMoviesAsync(filter);
+                  return await trendingMoviesService.GetTrendingMoviesAsync(filter);
                 }
                 else
                 {
-                    await trendingMoviesService.GetTrendingMoviesAsync(filter);
+                  return  await trendingMoviesService.GetTrendingMoviesAsync(filter);
                 }
             }
             catch (Exception)
